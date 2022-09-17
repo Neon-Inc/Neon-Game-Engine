@@ -5,6 +5,12 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Title>Neon Game Engine</Title>
+    <PackageId>neon-game-engine</PackageId>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <Company>Neon Inc</Company>
+    <Description>Minimal Cross platform Game Engine library</Description>
+    <Copyright>MIT</Copyright>
   </PropertyGroup>
 
 </Project>
