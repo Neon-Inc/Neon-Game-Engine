@@ -11,6 +11,7 @@ namespace GameEngine
 
     }
     public class Graphics{
+        private List<char[]> buffer = new List<char[]>();
         public List<GameObject> gameObjects = new List<GameObject>();   
         public static int resolutionX, resolutionY = 10;
         List<Line> lines = new List<Line>();
@@ -19,28 +20,54 @@ namespace GameEngine
             for (int i = 0; i < resolutionY; i++){
                 lines.Add(new Line());
             }
-            
+            for (int i = 0; i < resolutionY; i++)
+            {
+                buffer.Add(new char[resolutionX]);
+            }
+
         }
         
         
         public void updateScreen(){
-          
-                for(int i = 0; i < lines.Count; i++){
-                    for(int j = 0; j< lines[i].chars.Count;j++){
-                        lines[i].chars[j] = ' ';
-                    }
+            Console.Clear();
+            FillWithSpaces();
+            List<char[]> characters = calculateGraphics();
+            
 
+            string toOutput = "";
+            for (int i = 0; i < characters.Count; i++) { 
+                for(int j = 0; j< characters[i].Length; j++){
+                    toOutput += characters[i][j].ToString();
                 }
-                for (int i = 0; i < gameObjects.Count; i++){
-                    lines[gameObjects[i].Y].chars[gameObjects[i].X] = gameObjects[i].graph;
+                toOutput += "|\n";
+                
+            }
+
+            Console.WriteLine(toOutput);
+
+
+        }
+        private void FillWithSpaces(){
+            for (int i = 0; i < buffer.Count; i++)
+            {
+                for (int j = 0; j < buffer[i].Length; j++)
+                {
+                    buffer[i][j] = ' ';
                 }
-                for (int i = 0; i < lines.Count; i++) {
-                for(int j = 0; i < lines[i].chars.Count; j++){
-                    Console.Write(lines[i].chars[j]);
-                }
-                Console.Write("\n");
             }
         }
+        public List<char[]> calculateGraphics(){
+
+
+            
+            for (int i = 0;i < gameObjects.Count;i ++){
+                buffer[gameObjects[i].Y][gameObjects[i].X] = gameObjects[i].graph;
+            }
+            
+            return buffer;
+        }
+            
     }
-    
 }
+    
+
