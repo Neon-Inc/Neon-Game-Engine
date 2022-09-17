@@ -11,4 +11,5 @@ Features:<br />
    - [x] Make scripting working<br />
    - [x] Make readme<br />
    - [x] Make code comments<br />
+   - [x] Make floppy bird<br />
    - [ ] Make debug function working<br />

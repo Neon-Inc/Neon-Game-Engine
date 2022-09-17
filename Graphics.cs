@@ -42,8 +42,10 @@ namespace GameEngine
                 for(int j = 0; j< characters[i].Length; j++){
                     toOutput += characters[i][j].ToString();
                 }
-                toOutput += "|\n";
-                
+                toOutput += "|\n";     
+            }
+            for(int i = 0; i < resolutionX; i++){
+                toOutput += "_";
             }
 
             Console.WriteLine(toOutput);

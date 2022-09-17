@@ -12,9 +12,8 @@ namespace GameEngine{
         private Graphics Graphics = new Graphics();
         public List<GameObject> GameObjects = new List<GameObject>();
         private System.Timers.Timer mainTimer = new System.Timers.Timer();
-
+        public int currentObjScript = 0;
         //Interval of main timer(readonly, controlled by other funcitions)
-        private int interval = 10; 
         //Controls if debug mode is ON or OFF(Showing extra details etc.)
         public bool debug = false;
         //Sets FPS
@@ -57,6 +56,19 @@ namespace GameEngine{
             return 0;
         }
         //Creates new gameobject with name
+        public int CreateGameObject(string name, string description, int X,int Y, char graph)
+        {
+            GameObjects.Add(new GameObject());
+            GameObjects[GameObjects.Count - 1].id = GameObjects.Count - 1;
+            GameObjects[GameObjects.Count - 1].X = X;
+            GameObjects[GameObjects.Count - 1].Y = Y;
+            GameObjects[GameObjects.Count - 1].graph = graph;
+            GameObjects[GameObjects.Count - 1].name = name;
+            GameObjects[GameObjects.Count - 1].description = description;
+            GameObjects[GameObjects.Count - 1].runScriptStart();
+            UpdateParents();
+            return 0;
+        }
         public int CreateGameObject(string name){
             GameObjects.Add(new GameObject());
             GameObjects[GameObjects.Count - 1].id = GameObjects.Count - 1;
@@ -80,6 +92,7 @@ namespace GameEngine{
         //Update all update scripts of all objects
         public int UpdateObjectScripts(){
             for (int i = 0; i < GameObjects.Count; i++){
+                currentObjScript = i;
                 GameObjects[i].runScriptUpdate();
             }
             return 0;
@@ -107,17 +120,24 @@ namespace GameEngine{
         private void tick(object? sender, System.Timers.ElapsedEventArgs e){
             Update();
         }//Sets framerate (new framerate = how much fps)
-        public void setFramerate(int newFramerate){ 
-            
+        public void setFramerate(int newFramerate){
+            int interval = 10;
             framerate = newFramerate;
             interval = 1000 / newFramerate;
             defaultFramerate = interval;
-            mainTimer.Interval = interval;
+               mainTimer.Interval = interval;
             mainTimer.Stop();
             mainTimer.Start();
         }
-        
-        
+        public int[] getResolution(){
+            int[] ints = new int[2];
+            ints[0] = Graphics.resolutionX;
+            ints[1] = Graphics.resolutionY;
+            return ints;
+        }
+        public void Stop(){
+            mainTimer.Stop();
+        }
 
     }
 
