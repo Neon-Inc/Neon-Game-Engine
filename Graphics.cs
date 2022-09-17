@@ -23,8 +23,8 @@ namespace GameEngine
         }
         
         
-        public int updateScreen(){
-            try {
+        public void updateScreen(){
+          
                 for(int i = 0; i < lines.Count; i++){
                     for(int j = 0; j< lines[i].chars.Count;j++){
                         lines[i].chars[j] = ' ';
@@ -40,14 +40,6 @@ namespace GameEngine
                 }
                 Console.Write("\n");
             }
-                return 0;
-            }catch(Exception ex){
-                
-                
-                return -1;
-            }
-
-
         }
     }
     
