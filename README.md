@@ -7,8 +7,8 @@ Features:<br />
   Customizable resolution<br />
   <br />
   TODO:<br />
-    [ ]Fix broken graphics<br />
-    [x]Make scripting working<br />
-    [x]Make readme<br />
-    [ ]Make code comments<br />
-    [ ]Make debug function working<br />
+    [ ] Fix broken graphics<br />
+    [x] Make scripting working<br />
+    [x] Make readme<br />
+    [ ] Make code comments<br />
+    [ ] Make debug function working<br />
