@@ -19,6 +19,7 @@ namespace GameEngine{
         public int defaultFramerate = 30;
         
         public void init(){
+            Graphics.Init();
             initScripts();
             initTimer();
         }

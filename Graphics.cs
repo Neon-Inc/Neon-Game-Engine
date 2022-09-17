@@ -24,8 +24,19 @@ namespace GameEngine
         }
         
         public int updateScreen(){
+            try { 
+            for (int i = 0; i < lines.Count; i++) {
+                for(int j = 0; i < lines[i].chars.Count; j++){
+                    Console.Write(lines[i].chars[j]);
+                }
+                Console.Write("\n");
+            }
+                return 0;
+            }catch(Exception ex){
+                return -1;
+            }
 
-            return -1;
+
         }
     }
     
