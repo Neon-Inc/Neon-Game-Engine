@@ -12,20 +12,29 @@ namespace GameEngine
     }
     public class Graphics{
         public List<GameObject> gameObjects = new List<GameObject>();   
-        public static int resolutionX, resolutionY;
+        public static int resolutionX, resolutionY = 10;
         List<Line> lines = new List<Line>();
         public void Init(){
+
             for (int i = 0; i < resolutionY; i++){
                 lines.Add(new Line());
             }
-            for(int i = 0;i< gameObjects.Count; i++){
-                lines[gameObjects[i].Y].chars[gameObjects[i].X] = gameObjects[i].graph;
-            }
+            
         }
         
+        
         public int updateScreen(){
-            try { 
-            for (int i = 0; i < lines.Count; i++) {
+            try {
+                for(int i = 0; i < lines.Count; i++){
+                    for(int j = 0; j< lines[i].chars.Count;j++){
+                        lines[i].chars[j] = ' ';
+                    }
+
+                }
+                for (int i = 0; i < gameObjects.Count; i++){
+                    lines[gameObjects[i].Y].chars[gameObjects[i].X] = gameObjects[i].graph;
+                }
+                for (int i = 0; i < lines.Count; i++) {
                 for(int j = 0; i < lines[i].chars.Count; j++){
                     Console.Write(lines[i].chars[j]);
                 }
@@ -33,6 +42,8 @@ namespace GameEngine
             }
                 return 0;
             }catch(Exception ex){
+                
+                
                 return -1;
             }
 

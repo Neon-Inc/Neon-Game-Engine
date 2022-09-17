@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace GameEngine{
     public class Script{
-        
-        public void Start() { }
-        public void Update() { }
+
+        public delegate void Start1();
+        public delegate void Update1();
+        public Start1 Start;
+        public Update1 Update;
         
     }
 }

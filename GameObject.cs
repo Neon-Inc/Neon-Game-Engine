@@ -16,8 +16,11 @@ namespace GameEngine{
         private List<Script> scripts = new List<Script>();
         public List<GameObject> parentOf = new List<GameObject>();
         public List<GameObject> childOf = new List<GameObject>();
+        
         public void AddScript(Script script){
             scripts.Add(script);
+            
+            
         }
         public Script GetScript(int id) { 
             return scripts[id];

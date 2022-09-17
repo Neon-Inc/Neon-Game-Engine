@@ -13,17 +13,21 @@ namespace GameEngine{
         public List<GameObject> GameObjects = new List<GameObject>();
         private System.Timers.Timer mainTimer = new System.Timers.Timer();
 
-        private int interval; 
+        private int interval = 10; 
         public bool debug = false;
         private int framerate;
-        public int defaultFramerate = 30;
+        public int defaultFramerate = 10;
         
         public void init(){
             Graphics.Init();
             initScripts();
             initTimer();
         }
-        
+        public int setResolution(int X, int Y) {
+            Graphics.resolutionX = X;
+            Graphics.resolutionY = Y;
+            return 0;
+        }
         private void UpdateParents(){     
             for (int i = 0; i < GameObjects.Count; i++){
                 List<int> tmp = new List<int>();
@@ -45,7 +49,7 @@ namespace GameEngine{
                 }
             }
         }
-        private void CreateGameObject(string name){
+        public void CreateGameObject(string name){
             GameObjects.Add(new GameObject());
             GameObjects[GameObjects.Count - 1].id = GameObjects.Count - 1;
             GameObjects[GameObjects.Count - 1].X = 0;
@@ -54,7 +58,7 @@ namespace GameEngine{
             GameObjects[GameObjects.Count - 1].runScriptStart();
             UpdateParents();
         }
-        private void CreateGameObject(){
+        public void CreateGameObject(){
             GameObjects.Add(new GameObject());
             GameObjects[GameObjects.Count - 1].id = GameObjects.Count - 1;
             GameObjects[GameObjects.Count - 1].X = 0;
@@ -88,10 +92,14 @@ namespace GameEngine{
         private void tick(object? sender, System.Timers.ElapsedEventArgs e){
             Update();
         }
-        private void setFramerate(int newFramerate){ 
+        public void setFramerate(int newFramerate){ 
+            
             framerate = newFramerate;
             interval = 1000 / newFramerate;
+            defaultFramerate = interval;
             mainTimer.Interval = interval;
+            mainTimer.Stop();
+            mainTimer.Start();
         }
         
         
