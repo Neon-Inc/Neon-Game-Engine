@@ -13,21 +13,27 @@ namespace GameEngine{
         public List<GameObject> GameObjects = new List<GameObject>();
         private System.Timers.Timer mainTimer = new System.Timers.Timer();
 
+        //Interval of main timer(readonly, controlled by other funcitions)
         private int interval = 10; 
+        //Controls if debug mode is ON or OFF(Showing extra details etc.)
         public bool debug = false;
+        //Sets FPS
         private int framerate;
         public int defaultFramerate = 10;
         
+        //Intial function
         public void init(){
             Graphics.Init();
             initScripts();
             initTimer();
         }
+        //Sets resolution of canvas
         public int setResolution(int X, int Y) {
             Graphics.resolutionX = X;
             Graphics.resolutionY = Y;
             return 0;
         }
+        //Updates OOP parent list
         private void UpdateParents(){     
             for (int i = 0; i < GameObjects.Count; i++){
                 List<int> tmp = new List<int>();
@@ -49,6 +55,7 @@ namespace GameEngine{
                 }
             }
         }
+        //Creates new gameobject with name
         public void CreateGameObject(string name){
             GameObjects.Add(new GameObject());
             GameObjects[GameObjects.Count - 1].id = GameObjects.Count - 1;
@@ -58,6 +65,7 @@ namespace GameEngine{
             GameObjects[GameObjects.Count - 1].runScriptStart();
             UpdateParents();
         }
+        //Without name
         public void CreateGameObject(){
             GameObjects.Add(new GameObject());
             GameObjects[GameObjects.Count - 1].id = GameObjects.Count - 1;
@@ -66,24 +74,27 @@ namespace GameEngine{
             GameObjects[GameObjects.Count - 1].runScriptStart();
             UpdateParents();
         }
+        //Update all update scripts of all objects
         public void UpdateObjectScripts(){
             for (int i = 0; i < GameObjects.Count; i++){
                 GameObjects[i].runScriptUpdate();
             }
         }
+        //Update function
         private void Update(){
-
             UpdateParents();
             Graphics.gameObjects = GameObjects;
             Graphics.updateScreen();
             UpdateObjectScripts();
         }
+        //Starts Main timer
         private void initTimer(){
             mainTimer.Stop();
             setFramerate(defaultFramerate);
             mainTimer.Elapsed += tick;
             mainTimer.Start();
         }
+        //Run all starts scripts of all objects
         private void initScripts(){
             for (int i = 0; i < GameObjects.Count; i++){
                 GameObjects[i].runScriptStart();
@@ -91,7 +102,7 @@ namespace GameEngine{
         }
         private void tick(object? sender, System.Timers.ElapsedEventArgs e){
             Update();
-        }
+        }//Sets framerate (new framerate = how much fps)
         public void setFramerate(int newFramerate){ 
             
             framerate = newFramerate;

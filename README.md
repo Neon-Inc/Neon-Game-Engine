@@ -10,5 +10,5 @@ Features:<br />
    - [x] Fix broken graphics<br />
    - [x] Make scripting working<br />
    - [x] Make readme<br />
-   - [ ] Make code comments<br />
+   - [x] Make code comments<br />
    - [ ] Make debug function working<br />

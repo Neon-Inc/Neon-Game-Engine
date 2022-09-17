@@ -12,9 +12,12 @@ namespace GameEngine
     }
     public class Graphics{
         private List<char[]> buffer = new List<char[]>();
+        //Duplicate of gameObjects in engine(no memory efficient, fix later)
         public List<GameObject> gameObjects = new List<GameObject>();   
         public static int resolutionX, resolutionY = 10;
+        //List of lines
         List<Line> lines = new List<Line>();
+        //Intial function
         public void Init(){
 
             for (int i = 0; i < resolutionY; i++){
@@ -27,7 +30,7 @@ namespace GameEngine
 
         }
         
-        
+        //Update function for screen
         public void updateScreen(){
             Console.Clear();
             FillWithSpaces();
@@ -47,6 +50,7 @@ namespace GameEngine
 
 
         }
+        //Fills all empty things by spaces
         private void FillWithSpaces(){
             for (int i = 0; i < buffer.Count; i++)
             {
@@ -56,10 +60,8 @@ namespace GameEngine
                 }
             }
         }
-        public List<char[]> calculateGraphics(){
 
-
-            
+        public List<char[]> calculateGraphics(){    
             for (int i = 0;i < gameObjects.Count;i ++){
                 buffer[gameObjects[i].Y][gameObjects[i].X] = gameObjects[i].graph;
             }
