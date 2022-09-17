@@ -13,3 +13,4 @@ Features:<br />
    - [x] Make code comments<br />
    - [x] Make floppy bird<br />
    - [ ] Make debug function working<br />
+![Floppy bird](https://cdn.discordapp.com/attachments/947503302361354261/1020810576978514010/unknown.png)
