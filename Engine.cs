@@ -23,9 +23,9 @@ namespace GameEngine{
         
         //Intial function
         public void init(){
-            Graphics.Init();
-            initScripts();
-            initTimer();
+                Graphics.Init();
+                initScripts();
+                initTimer();
         }
         //Sets resolution of canvas
         public int setResolution(int X, int Y) {
@@ -34,7 +34,7 @@ namespace GameEngine{
             return 0;
         }
         //Updates OOP parent list
-        private void UpdateParents(){     
+        private int UpdateParents(){     
             for (int i = 0; i < GameObjects.Count; i++){
                 List<int> tmp = new List<int>();
                 if (GameObjects[i].parentOf.Count > 0){
@@ -54,9 +54,10 @@ namespace GameEngine{
                     }       
                 }
             }
+            return 0;
         }
         //Creates new gameobject with name
-        public void CreateGameObject(string name){
+        public int CreateGameObject(string name){
             GameObjects.Add(new GameObject());
             GameObjects[GameObjects.Count - 1].id = GameObjects.Count - 1;
             GameObjects[GameObjects.Count - 1].X = 0;
@@ -64,21 +65,24 @@ namespace GameEngine{
             GameObjects[GameObjects.Count - 1].name = name;
             GameObjects[GameObjects.Count - 1].runScriptStart();
             UpdateParents();
+            return 0;
         }
         //Without name
-        public void CreateGameObject(){
+        public int CreateGameObject(){
             GameObjects.Add(new GameObject());
             GameObjects[GameObjects.Count - 1].id = GameObjects.Count - 1;
             GameObjects[GameObjects.Count - 1].X = 0;
             GameObjects[GameObjects.Count - 1].Y = 0;
             GameObjects[GameObjects.Count - 1].runScriptStart();
             UpdateParents();
+            return 0;
         }
         //Update all update scripts of all objects
-        public void UpdateObjectScripts(){
+        public int UpdateObjectScripts(){
             for (int i = 0; i < GameObjects.Count; i++){
                 GameObjects[i].runScriptUpdate();
             }
+            return 0;
         }
         //Update function
         private void Update(){
