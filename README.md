@@ -5,6 +5,7 @@ Features:<br />
   C# scripting<br />
   Customizable framerate<br />
   Customizable resolution<br />
+  dot.net core - Crossplatform<br />
   <br />
   TODO:<br />
    - [x] Fix broken graphics<br />
