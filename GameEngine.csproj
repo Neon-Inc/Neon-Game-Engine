@@ -10,7 +10,26 @@
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <Company>Neon Inc</Company>
     <Description>Minimal Cross platform Game Engine library</Description>
-    <Copyright>MIT</Copyright>
+    <Copyright>Neon Company® All rights reserved</Copyright>
+    <Product>Neon Game Engine</Product>
+    <PackageProjectUrl>https://github.com/Neon-Inc/Neon-Game-Engine</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/Neon-Inc/Neon-Game-Engine</RepositoryUrl>
+    <PackageTags>game; engine; neon;</PackageTags>
+    <PackageReleaseNotes>First version</PackageReleaseNotes>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>
