@@ -9,21 +9,21 @@ using System.Xml.Linq;
 namespace GameEngine{
     
     public class Engine{
-        public bool catchInputEnabled = false;
+
         private Graphics Graphics = new Graphics();
         public List<GameObject> GameObjects = new List<GameObject>();
         private System.Timers.Timer mainTimer = new System.Timers.Timer();
-        public int currentObjScript = 0;
-        //Interval of main timer(readonly, controlled by other funcitions)
         //Controls if debug mode is ON or OFF(Showing extra details etc.)
         public bool debug = false;
         //Sets FPS
         private int framerate;
+        public int UpdateScriptRunning = 0;
         public int defaultFramerate = 10;
-        public void OnError(string errormsg, string error){
+        public void OnError(string sender,string errormsg, string error){
             Stop();
             Console.Clear();
             if (debug) {
+                Console.WriteLine("From: " + sender);
                 Console.WriteLine(errormsg + "\n" + error);
             }
             else { 
@@ -34,13 +34,13 @@ namespace GameEngine{
             Environment.Exit(-1);
         }
         //Intial function
-        public void init(){
+        public void Init(){
             try{
                 Graphics.Init();
                 initScripts();
                 initTimer();
             }catch(Exception ex){
-                OnError(ex.Message, ex.ToString());
+                OnError("Init",ex.Message, ex.ToString());
             }
         }
         //Sets resolution of canvas
@@ -51,7 +51,7 @@ namespace GameEngine{
                 Graphics.resolutionY = Y;
                 return 0;
             }catch(Exception ex){
-                OnError(ex.Message, ex.ToString());
+                OnError("Resolution_Change",ex.Message, ex.ToString());
                 return -1;
             }
         }
@@ -88,16 +88,24 @@ namespace GameEngine{
                 }
                 return 0;
             }catch(Exception ex){
-                OnError(ex.Message, ex.ToString());
+                OnError("Parent_Update ",ex.Message, ex.ToString());
                 return 0;
             }
+        }
+        public void enableCustomColors(bool onoff) {
+            Graphics.charRendering = onoff;
+        }
+        public void addCustomColor(int characterIndex, ConsoleColor frontColor,ConsoleColor backColor){
+            Graphics.customColorID.Add(characterIndex);
+            Graphics.customColors.Add(frontColor);
+            Graphics.customColorsBack.Add(backColor);
         }
         public void changeColor(ConsoleColor foreColor, ConsoleColor backColor){
             try { 
             Graphics.changeColor(foreColor, backColor);
             }
             catch (Exception ex){
-                OnError(ex.Message, ex.ToString());
+                OnError("change_color",ex.Message, ex.ToString());
             }
         }
         public void changeDefaultcolor(ConsoleColor fore, ConsoleColor back){
@@ -106,7 +114,7 @@ namespace GameEngine{
             Graphics.defaultFore = fore;
             }
             catch (Exception ex){
-                OnError(ex.Message, ex.ToString());
+                OnError("default_color",ex.Message, ex.ToString());
             }
         }
             //Creates new gameobject with name
@@ -124,7 +132,7 @@ namespace GameEngine{
             return 0;
             }
             catch (Exception ex){
-                OnError(ex.Message, ex.ToString());return -1;
+                OnError("game_object_create",ex.Message, ex.ToString());return -1;
             }
         }
         public int CreateGameObject(string name){
@@ -140,7 +148,7 @@ namespace GameEngine{
                 return 0;
             }
             catch(Exception ex){
-                OnError(ex.Message, ex.ToString());
+                OnError("game_object_create", ex.Message, ex.ToString());
                 return -1;
             }
         }
@@ -156,14 +164,14 @@ namespace GameEngine{
             return 0;
             }
             catch (Exception ex){
-                OnError(ex.Message, ex.ToString());
+                OnError("game_object_create", ex.Message, ex.ToString());
                 return -1;
             }
         }
         //Update all update scripts of all objects
         public int UpdateObjectScripts(){
             for (int i = 0; i < GameObjects.Count; i++){
-                currentObjScript = i;
+                UpdateScriptRunning = i;
                 GameObjects[i].runScriptUpdate();
             }
             return 0;
@@ -177,7 +185,7 @@ namespace GameEngine{
                 Graphics.updateScreen();
                 UpdateObjectScripts();
             }catch(Exception ex){
-                OnError(ex.Message, ex.ToString());
+                OnError("update",ex.Message, ex.ToString());
             }
         }
         //Starts Main timer
@@ -189,7 +197,7 @@ namespace GameEngine{
             mainTimer.Start();
             }
             catch (Exception ex){
-                OnError(ex.Message, ex.ToString());
+                OnError("timer_init",ex.Message, ex.ToString());
             }
         }
 
@@ -202,7 +210,7 @@ namespace GameEngine{
                 }
             }
             catch (Exception ex){
-                OnError(ex.Message, ex.ToString());
+                OnError("script_init",ex.Message, ex.ToString());
             }
         }
         private void tick(object? sender, System.Timers.ElapsedEventArgs e){
@@ -219,7 +227,7 @@ namespace GameEngine{
             mainTimer.Start();
             }
             catch (Exception ex){
-                OnError(ex.Message, ex.ToString());
+                OnError("framerate_set",ex.Message, ex.ToString());
             }
         }
         public int[] getResolution(){
@@ -229,7 +237,7 @@ namespace GameEngine{
                 ints[1] = Graphics.resolutionY;
                 return ints;
             }catch(Exception ex){
-                OnError(ex.Message, ex.ToString());
+                OnError("resolution_get",ex.Message, ex.ToString());
                 return new int[2] {5,5 };
             }
         }
@@ -237,7 +245,7 @@ namespace GameEngine{
             try{
                 mainTimer.Stop();
             }catch(Exception ex){
-                OnError(ex.Message, ex.ToString());
+                OnError("stop",ex.Message, ex.ToString());
             }
         }
 

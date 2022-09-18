@@ -13,6 +13,12 @@ namespace GameEngine
 
     }
     public class Graphics{
+        //printing each character instead of full string at once
+        public bool charRendering = false;
+        public List<int> customColorID = new List<int>();
+        public List<ConsoleColor> customColors = new List<ConsoleColor>();//requie charRendering to work
+        public List<ConsoleColor> customColorsBack = new List<ConsoleColor>();//requie charRendering to work
+
         public ConsoleColor defaultFore, defaultBack;
         private ConsoleColor ForeColor;
         public bool debug = false;
@@ -24,10 +30,10 @@ namespace GameEngine
         //List of lines
         List<Line> lines = new List<Line>();
         //Intial function
-        public void OnError(string errormsg, string error){            
+        public void OnError(string sender,string errormsg, string error){            
             Console.Clear();
             if (debug){
-                Console.WriteLine(errormsg + "\n" + error);
+                Console.WriteLine("From:" + sender + "\n" + errormsg + "\n" + error);
             }
             else{
                 Console.WriteLine(errormsg);
@@ -47,7 +53,7 @@ namespace GameEngine
                     buffer.Add(new char[resolutionX]);
                 }
             }catch(Exception ex){
-                OnError(ex.Message, ex.ToString());
+                OnError("graphics:init", ex.Message, ex.ToString());
     }
 
 }
@@ -58,7 +64,7 @@ namespace GameEngine
             ForeColor = foreColor;
             }
             catch (Exception ex){
-                OnError(ex.Message, ex.ToString());
+                OnError("graphics:change_color",ex.Message, ex.ToString());
             }
         }
         //Update function for screen
@@ -81,12 +87,32 @@ namespace GameEngine
             }
             Console.ForegroundColor =ForeColor;
             Console.BackgroundColor =BackColor;
-            Console.WriteLine(toOutput);
+                //Printing every character each(slower, supports multiple colors)
+                if (charRendering){
+                    for (int i = 0; i < toOutput.Length; i++){
+                        for(int j = 0; j < customColorID.Count; j++){
+                            if (customColorID[j] == i){
+                                Console.BackgroundColor = customColorsBack[j];
+                                Console.ForegroundColor = customColors[j];
+                            }
+                        }
+                        Console.Write(toOutput[i]);
+                        Console.ForegroundColor = ForeColor;
+                        Console.BackgroundColor = BackColor;
+                    }
+                    Console.Write("\n");
+                }
+                else{
+                //Prints full sting at once
+                    Console.WriteLine(toOutput);
+                }
+                
+            //Console.WriteLine(toOutput);
             Console.ForegroundColor = defaultFore;
             Console.BackgroundColor = defaultBack;
             }
             catch (Exception ex){
-                OnError(ex.Message, ex.ToString());
+                OnError("graphics:screen_update",ex.Message, ex.ToString());
             }
         }
         //Fills all empty things by spaces
@@ -101,7 +127,7 @@ namespace GameEngine
             }
             }
             catch (Exception ex){
-                OnError(ex.Message, ex.ToString());
+                OnError("graphics:fill_text_with_spaces",ex.Message, ex.ToString());
             }
         }
         public List<char[]> calculateGraphics()
@@ -113,7 +139,7 @@ namespace GameEngine
                     buffer[gameObjects[i].Y][gameObjects[i].X] = gameObjects[i].graph;
                 }
             }catch(Exception ex){
-                OnError(ex.Message, ex.ToString());
+                OnError("graphics:calculate",ex.Message, ex.ToString());
             }
             return buffer;
         }
