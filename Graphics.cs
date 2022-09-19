@@ -15,6 +15,7 @@ namespace GameEngine
     public class Graphics{
         //printing each character instead of full string at once
         public bool charRendering = false;
+        public bool lineRendering = false;
         public List<int> customColorID = new List<int>();
         public List<ConsoleColor> customColors = new List<ConsoleColor>();//requie charRendering to work
         public List<ConsoleColor> customColorsBack = new List<ConsoleColor>();//requie charRendering to work
@@ -101,6 +102,19 @@ namespace GameEngine
                         Console.BackgroundColor = BackColor;
                     }
                     Console.Write("\n");
+                }
+                else if (lineRendering){
+                    string[] strings = toOutput.Split('\n');
+                    for(int i = 0; i < strings.Length; i++){
+                        for (int j = 0; j < customColorID.Count; j++){
+                            if (customColorID[j] == i){
+                                Console.BackgroundColor = customColorsBack[j];
+                                Console.ForegroundColor = customColors[j];
+                            }}
+                        Console.WriteLine(strings[i]);
+                        Console.ForegroundColor = ForeColor;
+                        Console.BackgroundColor = BackColor;
+                    }
                 }
                 else{
                 //Prints full sting at once

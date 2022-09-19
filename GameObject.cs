@@ -40,7 +40,7 @@ namespace GameEngine{
                 scripts[i].Update();
             }
         }
-
+        
 
     }
 

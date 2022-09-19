@@ -92,8 +92,13 @@ namespace GameEngine{
                 return 0;
             }
         }
-        public void enableCustomColors(bool onoff) {
-            Graphics.charRendering = onoff;
+        public void enableCustomColors(bool charLine,bool onoff) {
+            if (!charLine){
+                Graphics.charRendering = onoff;
+            }
+            else if(charLine){
+                Graphics.lineRendering = onoff;
+            }
         }
         public void addCustomColor(int characterIndex, ConsoleColor frontColor,ConsoleColor backColor){
             Graphics.customColorID.Add(characterIndex);
