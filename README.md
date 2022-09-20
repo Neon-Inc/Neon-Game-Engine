@@ -9,9 +9,5 @@ Features:<br />
   <br />
   TODO:<br />
    - [x] Fix broken graphics<br />
-   - [x] Make scripting working<br />
-   - [x] Make readme<br />
-   - [x] Make code comments<br />
-   - [x] Make floppy bird<br />
-   - [x] Make debug function working<br />
 ![Floppy bird](https://github.com/Neon-Inc/Neon-Game-Engine/blob/master/Depends/image1.png)
+![How to use] (https://github.com/Neon-Inc/Neon-Game-Engine/blob/master/Depends/HowToUse.md)
