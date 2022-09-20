@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameEngine{
     public class GameObject{
+        public bool partOfGroup = false;
         //ID of object, by default its automaticly index in list
         public int id;
         public string name = "";

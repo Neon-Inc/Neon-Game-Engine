@@ -9,8 +9,8 @@ using System.Xml.Linq;
 namespace GameEngine{
     
     public class Engine{
-
         private Graphics Graphics = new Graphics();
+        public List<ObjGroup> objGroups = new List<ObjGroup>();
         public List<GameObject> GameObjects = new List<GameObject>();
         private System.Timers.Timer mainTimer = new System.Timers.Timer();
         //Controls if debug mode is ON or OFF(Showing extra details etc.)
@@ -25,6 +25,7 @@ namespace GameEngine{
             if (debug) {
                 Console.WriteLine("From: " + sender);
                 Console.WriteLine(errormsg + "\n" + error);
+                
             }
             else { 
             Console.WriteLine(errormsg);
@@ -146,6 +147,18 @@ namespace GameEngine{
                 OnError("game_object_create",ex.Message, ex.ToString());return -1;
             }
         }
+        public int CreateGameObject(string name, string description, char[] texture, Engine engine){
+            try{
+                objGroups.Add(new ObjGroup() { description = description, engine = engine, name = name });
+                objGroups[objGroups.Count - 1].runScriptStart();
+                UpdateParents();
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                OnError("game_object_create", ex.Message, ex.ToString()); return -1;
+            }
+        }
         public int CreateGameObject(string name){
             try
             {
@@ -161,6 +174,7 @@ namespace GameEngine{
                 return -1;
             }
         }
+        
         public void addTextBefore(string text){
             Graphics.textBefore = text;
         }
@@ -188,6 +202,10 @@ namespace GameEngine{
             for (int i = 0; i < GameObjects.Count; i++){
                 UpdateScriptRunning = i;
                 GameObjects[i].runScriptUpdate();
+            }
+            for (int i = 0; i < objGroups.Count; i++){
+                UpdateScriptRunning = i;
+                objGroups[i].runScriptUpdate();
             }
             return 0;
         }

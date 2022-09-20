@@ -1,10 +1,16 @@
-# GameEngine
-Game engine from Neon Inc
+# Neon Game Engine 2.0.1
+Lighweight game engine made in C#
+How to use: https://github.com/Neon-Inc/Neon-Game-Engine
+
+
 Neon Game engine ®2022
 Features:
   C# scripting
   Customizable framerate
   Customizable resolution
-  ![Floppy bird](https://github.com/Neon-Inc/Neon-Game-Engine/blob/master/Properties/Depends/image1.png)
+  Displaying in  cosnole
+  Many more
+
+
 
 

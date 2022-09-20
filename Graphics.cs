@@ -56,9 +56,9 @@ namespace GameEngine
                 }
             }catch(Exception ex){
                 OnError("graphics:init", ex.Message, ex.ToString());
-    }
-
-}
+            }
+    
+        }
 
         public void changeColor(ConsoleColor foreColor, ConsoleColor backColor){
             try { 
@@ -88,7 +88,11 @@ namespace GameEngine
                 toOutput += "_";
             }
                 Console.WriteLine(textBefore);
-            Console.ForegroundColor =ForeColor;
+                for (int i = 0; i < resolutionX; i++){
+                   Console.Write("_");
+                }
+                Console.WriteLine("");
+                Console.ForegroundColor =ForeColor;
             Console.BackgroundColor =BackColor;
                 //Printing every character each(slower, supports multiple colors)
                 if (charRendering){
@@ -120,7 +124,7 @@ namespace GameEngine
                 }
                 else{
                 //Prints full sting at once
-                    Console.WriteLine(toOutput);
+                    Console.WriteLine(toOutput + "|");
                 }
                 
                 
