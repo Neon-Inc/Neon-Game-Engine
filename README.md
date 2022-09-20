@@ -14,4 +14,4 @@ Features:<br />
    - [x] Make code comments<br />
    - [x] Make floppy bird<br />
    - [x] Make debug function working<br />
-![Floppy bird](https://github.com/Neon-Inc/Neon-Game-Engine/blob/master/Properties/Depends/image1.png)
+![Floppy bird](https://github.com/Neon-Inc/Neon-Game-Engine/blob/master/Depends/image1.png)
