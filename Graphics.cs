@@ -8,18 +8,19 @@ using System.Threading.Tasks;
 
 namespace GameEngine
 {
-    class Line{
+    internal class Line{
        public List<char> chars = new List<char>();
 
     }
-    public class Graphics{
+    internal class Graphics{
         //printing each character instead of full string at once
         public bool charRendering = false;
         public bool lineRendering = false;
         public List<int> customColorID = new List<int>();
         public List<ConsoleColor> customColors = new List<ConsoleColor>();//requie charRendering to work
         public List<ConsoleColor> customColorsBack = new List<ConsoleColor>();//requie charRendering to work
-
+        public string textBefore = "";
+        public string textAfter = "";
         public ConsoleColor defaultFore, defaultBack;
         private ConsoleColor ForeColor;
         public bool debug = false;
@@ -86,6 +87,7 @@ namespace GameEngine
             for(int i = 0; i < resolutionX; i++){
                 toOutput += "_";
             }
+                Console.WriteLine(textBefore);
             Console.ForegroundColor =ForeColor;
             Console.BackgroundColor =BackColor;
                 //Printing every character each(slower, supports multiple colors)
@@ -121,9 +123,11 @@ namespace GameEngine
                     Console.WriteLine(toOutput);
                 }
                 
+                
             //Console.WriteLine(toOutput);
             Console.ForegroundColor = defaultFore;
             Console.BackgroundColor = defaultBack;
+            Console.WriteLine(textAfter);
             }
             catch (Exception ex){
                 OnError("graphics:screen_update",ex.Message, ex.ToString());

@@ -93,13 +93,23 @@ namespace GameEngine{
             }
         }
         public void enableCustomColors(bool charLine,bool onoff) {
-            if (!charLine){
+            if (charLine){
                 Graphics.charRendering = onoff;
             }
-            else if(charLine){
+            else if(!charLine){
                 Graphics.lineRendering = onoff;
             }
         }
+        public void resetObject(int id){
+            GameObjects[id] = new GameObject(){
+                X = 0,
+                Y = 0,
+                id = id,
+            };
+            GameObjects[id].runScriptStart();
+            UpdateParents();
+        }
+
         public void addCustomColor(int characterIndex, ConsoleColor frontColor,ConsoleColor backColor){
             Graphics.customColorID.Add(characterIndex);
             Graphics.customColors.Add(frontColor);
@@ -124,14 +134,10 @@ namespace GameEngine{
         }
             //Creates new gameobject with name
             public int CreateGameObject(string name, string description, int X,int Y, char graph){
-            try { 
-            GameObjects.Add(new GameObject());
-            GameObjects[GameObjects.Count - 1].id = GameObjects.Count - 1;
-            GameObjects[GameObjects.Count - 1].X = X;
-            GameObjects[GameObjects.Count - 1].Y = Y;
-            GameObjects[GameObjects.Count - 1].graph = graph;
-            GameObjects[GameObjects.Count - 1].name = name;
-            GameObjects[GameObjects.Count - 1].description = description;
+            try {
+                GameObjects.Add(new GameObject(){
+                    X = X,Y = Y, graph = graph, name = name, description = description
+                });
             GameObjects[GameObjects.Count - 1].runScriptStart();
             UpdateParents();
             return 0;
@@ -143,11 +149,9 @@ namespace GameEngine{
         public int CreateGameObject(string name){
             try
             {
-                GameObjects.Add(new GameObject());
-                GameObjects[GameObjects.Count - 1].id = GameObjects.Count - 1;
-                GameObjects[GameObjects.Count - 1].X = 0;
-                GameObjects[GameObjects.Count - 1].Y = 0;
-                GameObjects[GameObjects.Count - 1].name = name;
+                GameObjects.Add(new GameObject(){
+                    name = name, X = 0, Y = 0, id = GameObjects.Count - 1
+                });
                 GameObjects[GameObjects.Count - 1].runScriptStart();
                 UpdateParents();
                 return 0;
@@ -157,13 +161,19 @@ namespace GameEngine{
                 return -1;
             }
         }
+        public void addTextBefore(string text){
+            Graphics.textBefore = text;
+        }
+        public void addTextAfter(string text)
+        {
+            Graphics.textAfter = text;
+        }
         //Without name
         public int CreateGameObject(){
             try{
-            GameObjects.Add(new GameObject());
-            GameObjects[GameObjects.Count - 1].id = GameObjects.Count - 1;
-            GameObjects[GameObjects.Count - 1].X = 0;
-            GameObjects[GameObjects.Count - 1].Y = 0;
+            GameObjects.Add(new GameObject(){
+                X = 0, Y = 0, id = GameObjects.Count - 1
+            });
             GameObjects[GameObjects.Count - 1].runScriptStart();
             UpdateParents();
             return 0;
