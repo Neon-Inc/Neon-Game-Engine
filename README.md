@@ -1,5 +1,6 @@
 # GameEngine<br />
 Game engine from Neon Inc<br />
+How to use https://github.com/Neon-Inc/Neon-Game-Engine/blob/master/Depends/HowToUse.md
 <br />
 Features:<br />
   C# scripting<br />
@@ -10,4 +11,3 @@ Features:<br />
   TODO:<br />
    - [x] Fix broken graphics<br />
 ![Floppy bird](https://github.com/Neon-Inc/Neon-Game-Engine/blob/master/Depends/image1.png)
-![How to use] (https://github.com/Neon-Inc/Neon-Game-Engine/blob/master/Depends/HowToUse.md)
