@@ -40,6 +40,9 @@ namespace GameEngine{
                 Graphics.Init();
                 initScripts();
                 initTimer();
+                if (debug) {
+                    Graphics.debug = true;
+                }
             }catch(Exception ex){
                 OnError("Init",ex.Message, ex.ToString());
             }

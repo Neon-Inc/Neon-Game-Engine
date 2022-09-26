@@ -9,21 +9,21 @@
     <PackageId>neon-game-engine</PackageId>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Company>Neon Inc</Company>
-    <Description>Minimal Cross platform Game Engine library</Description>
+    <Description>Cross platform lightweight game engine from Neon Inc</Description>
     <Copyright>Neon Company® All rights reserved</Copyright>
     <Product>Neon Game Engine</Product>
     <PackageProjectUrl>https://github.com/Neon-Inc/Neon-Game-Engine</PackageProjectUrl>
     <PackageReadmeFile>Properties\Nuget_README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/Neon-Inc/Neon-Game-Engine</RepositoryUrl>
     <PackageTags>game; engine; neon;</PackageTags>
-    <PackageReleaseNotes>First version</PackageReleaseNotes>
+    <PackageReleaseNotes>Debug function added to graphics</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <AssemblyVersion>0.6.3.7</AssemblyVersion>
-    <FileVersion>2.0.1.0</FileVersion>
+    <AssemblyVersion>0.6.5.9</AssemblyVersion>
+    <FileVersion>2.0.2</FileVersion>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <IncludeSymbols>False</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <Version>2.0.1</Version>
+    <Version>2.0.2</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
