@@ -20,7 +20,7 @@ namespace GameEngine{
         //List of who is parent of who
         public List<GameObject> parentOf = new List<GameObject>();
         public List<GameObject> childOf = new List<GameObject>();
-        
+        public List<int> data = new List<int>();
         //Adds script to object
         public void AddScript(Script script){
             scripts.Add(script);

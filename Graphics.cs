@@ -46,18 +46,15 @@ namespace GameEngine
         }
         public void Init(){
             try{
-                for (int i = 0; i < resolutionY; i++)
-                {
+                for (int i = 0; i < resolutionY; i++){
                     lines.Add(new Line());
                 }
-                for (int i = 0; i < resolutionY; i++)
-                {
+                for (int i = 0; i < resolutionY; i++){
                     buffer.Add(new char[resolutionX]);
                 }
             }catch(Exception ex){
                 OnError("graphics:init", ex.Message, ex.ToString());
             }
-    
         }
 
         public void changeColor(ConsoleColor foreColor, ConsoleColor backColor){
