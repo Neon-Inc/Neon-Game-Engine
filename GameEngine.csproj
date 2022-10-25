@@ -16,14 +16,17 @@
     <PackageReadmeFile>Properties\Nuget_README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/Neon-Inc/Neon-Game-Engine</RepositoryUrl>
     <PackageTags>game; engine; neon;</PackageTags>
-    <PackageReleaseNotes>Debug function added to graphics</PackageReleaseNotes>
+    <PackageReleaseNotes>User can store any type of data inside of data list in gameobject
+
+</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <AssemblyVersion>0.6.5.9</AssemblyVersion>
-    <FileVersion>2.0.2</FileVersion>
+    <AssemblyVersion>1.5.3.1</AssemblyVersion>
+    <FileVersion>2.0.7</FileVersion>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <IncludeSymbols>False</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <Version>2.0.2</Version>
+    <Version>3.0.1</Version>
+    <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
